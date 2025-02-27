@@ -20,7 +20,7 @@ public class UsuarioController {
         this.usuarioEntity = usuarioEntity;
     }
 
-    @PostMapping
+    @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
         try {
             Usuario novoUsuario = usuarioEntity.salvarUsuario(usuario.getEmail(), usuario.getUser(), usuario.getPassword());
@@ -29,6 +29,18 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
-
+    @PostMapping("/login")
+    public ResponseEntity<?> fazerLogin(@RequestBody Usuario usuario) {
+        try {
+            Usuario usuarioLogado = usuarioEntity.verificarLogin(usuario.getEmail(), usuario.getPassword());
+            return ResponseEntity.ok(usuarioLogado);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace(); // Adicione isso para ver detalhes no console
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace(); // Adicione isso para capturar erros inesperados
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno no servidor.");
+        }
+    }
 
 }

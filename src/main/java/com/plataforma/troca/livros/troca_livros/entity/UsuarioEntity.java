@@ -27,4 +27,15 @@ public class UsuarioEntity {
         return usuario;
     }
 
+    public Usuario verificarLogin(String email, String password) {
+        Usuario usuario = usuarioRepository.findByEmail(email);
+
+        if (usuario == null || !usuario.getPassword().equals(password)) {
+            throw new IllegalArgumentException("E-mail ou senha incorretos.");
+        }
+
+        return usuario;
+    }
+
+
 }
