@@ -16,6 +16,11 @@ public class UsuarioEntity {
 
     @Transactional
     public Usuario salvarUsuario(String email, String user, String password ) {
+
+       if (usuarioRepository.findByEmail(email) != null || usuarioRepository.findByUser(user) != null) {
+            throw new IllegalArgumentException("Usuário ou e-mail já cadastrado.");
+        }
+
         Usuario usuario = new Usuario(email,user,password);
         usuarioRepository.save(usuario);
 

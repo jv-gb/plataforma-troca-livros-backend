@@ -10,13 +10,13 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
-    private String User;
+    private String user;
     private String Password;
 
     public Usuario(String email, String user, String password) {
         this.id = id;
         this.email = email;
-        User = user;
+        this.user = user;
         Password = password;
     }
 
@@ -29,11 +29,11 @@ public class Usuario {
     }
 
     public String getUser() {
-        return User;
+        return user;
     }
 
     public void setUser(String user) {
-        User = user;
+        this.user = user;
     }
 
     public String getPassword() {

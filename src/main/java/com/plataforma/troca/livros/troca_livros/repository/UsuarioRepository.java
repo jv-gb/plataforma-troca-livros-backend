@@ -3,10 +3,9 @@ package com.plataforma.troca.livros.troca_livros.repository;
 import com.plataforma.troca.livros.troca_livros.models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-;
+
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-
-Usuario findnovoUsuarioByEmail(String email);
-Usuario findnovoUsuarioByUser(String user);
+    Usuario findByUser(String user);
+    Usuario findByEmail(String email);
 }

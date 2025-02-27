@@ -21,11 +21,13 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario) {
-
-        Usuario novoUsuario = usuarioEntity.salvarUsuario(usuario.getEmail(), usuario.getUser(), usuario.getPassword());
-        return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);
-
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody Usuario usuario) {
+        try {
+            Usuario novoUsuario = usuarioEntity.salvarUsuario(usuario.getEmail(), usuario.getUser(), usuario.getPassword());
+            return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
 
 
