@@ -1,7 +1,7 @@
 package com.plataforma.troca.livros.troca_livros.controller;
 
 import com.plataforma.troca.livros.troca_livros.entity.UsuarioEntity;
-import com.plataforma.troca.livros.troca_livros.models.Usuario;
+import com.plataforma.troca.livros.troca_livros.models.novoUsuario;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +21,10 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<novoUsuario> cadastrarUsuario(@RequestBody novoUsuario usuario) {
 
-        usuarioEntity.salvarUsuario(usuario.getId(), usuario.getEmail(), usuario.getUser(), usuario.getPassword());
-        return new ResponseEntity<>(usuario, HttpStatus.CREATED);
-
+        novoUsuario novoUsuario = usuarioEntity.salvarUsuario(usuario.getEmail(), usuario.getUser(), usuario.getPassword());
+        return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);
 
     }
 

@@ -1,18 +1,19 @@
 package com.plataforma.troca.livros.troca_livros.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public class Usuario {
+@Table(name = "usuario")
+public class novoUsuario {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String User;
     private String Password;
 
-    public Usuario(Long id, String email, String user, String password) {
+    public novoUsuario(String email, String user, String password) {
         this.id = id;
         this.email = email;
         User = user;
@@ -43,7 +44,7 @@ public class Usuario {
         Password = password;
     }
 
-    public Usuario() {
+    public novoUsuario() {
 
     }
 
